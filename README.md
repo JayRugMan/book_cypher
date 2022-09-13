@@ -16,7 +16,7 @@ James version of the Holy Bible.
 149 5 16; 837 21 19; 1183 2 5; 1329 17 9
 ```
 
-The key is the book; the book is the key. Basically, if you don't know what 
+The key is the book; the book is the key. Basically, if you don't know which 
 book is used, you can _in no way_ decipher the message. Even if you had a 
 Bible, but it's a different version or edition, you still won't get the right 
 message.
