@@ -269,7 +269,7 @@ def main():
                                     args['book_file'],
                                     special_chars
                                    )
-        final_answer = 'Message:\n{}\n'.format(final_message)
+        final_answer = 'Message:\n\n{}\n'.format(final_message)
     else:
         final_answer = 'Oppsy... how did this happen?'
 
