@@ -251,7 +251,7 @@ def main():
         '{': "QXj",
         '}': "QXJ",
         '_': "QXu",
-        ' ': "QX+"
+        ' ': "QXS"
     }
 
     args = get_args(options)
