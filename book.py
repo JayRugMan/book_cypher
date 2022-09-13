@@ -217,6 +217,9 @@ def de_the_code(code_object, book_f, special_cs):
             except IndexError:
                 print('ERROR: Wacky Numbers!?!')
                 sys.exit(1)
+            except ValueError:
+                print('ERROR: Are those numbers!?!')
+                sys.exit(1)
             line_num = None
             char_num = None
 
