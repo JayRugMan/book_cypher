@@ -26,7 +26,7 @@ message.
 Well, any file can be a book - even corrupt files. Using base64, any string of 
 1's and 0's can be turned into characters in the English alphabet. All you need 
 is a line and line-position reference. And, since you're using a computer, 
-which is much faster as processing, you can reference each character instead of 
+which is much faster at processing, you can reference each character instead of 
 each word. By using python, you can process these data structures quickly and 
 accross platforms.
 
