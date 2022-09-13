@@ -5,7 +5,7 @@ A place where files are books and strings aspire to be digits
 ## What Is This, Even
 
 ### 1st, What is a Book Cypher
-I book cypher is a string of numbers that reference a page, line, and word in a 
+A book cypher is a string of numbers that reference a page, line, and word in a 
 specific book (or with the bible, page, verse, word), then taking a list of 
 these string, you can devise and send messages to someone who posesses the same 
 book. Only if the book is know can the list of digits be de-cyphered. For 
