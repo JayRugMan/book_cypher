@@ -71,7 +71,7 @@ Hello, world!
 
 You may be wondering how I was able to get the ',', SPACE, and '!' out of 
 base64... simple, but it does add overhead. The python script turns a ',', for 
-example, into a three-character string 'QXc', which is a sequense that isn't 
+example, into a three-character string 'QXc', which is a sequence that isn't 
 used in a normal English word. In our code above, this becomes '2 7 84 46 94 29':
 
 ```bash
