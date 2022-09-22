@@ -47,17 +47,17 @@ used instead of a string on the terminal
 '''
 
     parser = (argparse.ArgumentParser(
-                  prog='book.py',
-                  formatter_class=lambda prog: argparse.RawDescriptionHelpFormatter(
-                      prog,indent_increment=2,max_help_position=41),
-##JH                  formatter_class=lambda prog: argparse.HelpFormatter(
-##JH                      prog,indent_increment=2,max_help_position=41),
-##JH                  formatter_class=lambda prog: argparse.RawTextHelpFormatter(
-##JH                      prog,indent_increment=2,max_help_position=41),
-                  add_help=False,
-                  description=the_description,
-                  epilog=the_epilog
-                  )
+               prog='book.py',
+               formatter_class=lambda prog: argparse.RawDescriptionHelpFormatter(
+               prog,indent_increment=2,max_help_position=41),
+##JH               formatter_class=lambda prog: argparse.HelpFormatter(
+##JH               prog,indent_increment=2,max_help_position=41),
+##JH               formatter_class=lambda prog: argparse.RawTextHelpFormatter(
+##JH               prog,indent_increment=2,max_help_position=41),
+               add_help=False,
+               description=the_description,
+               epilog=the_epilog
+            )
              )
     group = parser.add_mutually_exclusive_group(required=True)
     parser.add_argument('-h', '--help',
@@ -152,7 +152,7 @@ def encode_message(message, special_cs, book_f):
     code = ''
 
     for character in message_str:
-        timeout = 50
+        timeout = numb_of_lines
         while True:
             rand_line_num = secrets.randbelow(numb_of_lines)
             if character in book_list[rand_line_num] and rand_line_num != 0:
@@ -254,6 +254,7 @@ def main():
         '{': "QXj",
         '}': "QXJ",
         '_': "QXu",
+        '/': "QXF",
         ' ': "QXS"
     }
 
