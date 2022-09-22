@@ -58,7 +58,7 @@ aCAtbS8tLW1lc3NhZ2UuCgonJycKICAgIHRoZV9lcGlsb2c9JycnXAoKbm90ZXM6CiAgT25seSB0
 ```
 
 So this is the basic concept. If I generate "Hello World!" using a specific 
-file as by "book", the resulting code can only be decoded using that exact 
+file as my "book", the resulting code can only be decoded using that exact 
 file:
 
 ```bash
@@ -80,4 +80,4 @@ Message:
 ,
 ```
 
-Then, as demonstrated above, this string is turned into 'QXc,' then back to ','
+So, as demonstrated above, this string is turned into 'QXc,' then back to ','
