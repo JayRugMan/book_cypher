@@ -272,7 +272,7 @@ def main():
                                    )
         final_answer = '\nMessage:\n\n{}\n'.format(final_message)
     else:
-        final_answer = 'Oppsy... how did this happen?'
+        final_answer = 'Oopsy... how did this happen?'
 
     print(final_answer)
 
