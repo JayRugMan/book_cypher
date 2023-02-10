@@ -4,7 +4,26 @@
 '''
 generate python3 code that creates a 512k file from an algorithmically generated seed
 '''
-# With the following explanation:
+# With the following script and explanation:
+'''
+import os
+import random
+
+# set seed for reproducibility
+random.seed(42)
+
+filename = "512KB_file.txt"
+file_size = 512 * 1024  # 512 KB
+
+# Generate random data
+data = bytearray([random.randint(0, 255) for i in range(file_size)])
+
+# Write data to file
+with open(filename, 'wb') as f:
+    f.write(data)
+
+print(f"Successfully generated {os.path.getsize(filename)} bytes of data to file '{filename}'.")
+'''
 '''
 This code sets the seed to 42, which will ensure that the same sequence of
 random numbers is generated every time the code is run. The bytearray function
@@ -41,5 +60,6 @@ data = bytearray([random.randint(0, 255) for i in range(file_size)])
 with open(filename, 'wb') as f:
     f.write(data)
 
-print(f"Successfully generated {os.path.getsize(filename)} bytes of data to file '{filename}'.")
+file_size = os.path.getsize(filename)
+print(f"Successfully generated {file_size} bytes of data to file '{filename}'.")
 
