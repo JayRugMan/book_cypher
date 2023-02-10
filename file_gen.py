@@ -12,15 +12,27 @@ creates an array of file_size random bytes, which are then written to a file
 named "512KB_file.txt". The code then prints a message indicating the file has
 been successfully created.
 '''
+'''
+Note that I've changed the seed to an argument and changed the filename to
+reflect the new size of 10KB
+'''
 
 import os
 import random
+import sys
 
 # set seed for reproducibility
-random.seed(42)
+the_args = sys.argv
+the_seed = the_args[1]
+try:
+    int(the_seed)
+except TypeError:
+    print("Nope, that's not a number")
+    exit
+random.seed(the_seed)
 
-filename = "512KB_file.txt"
-file_size = 512 * 1024  # 512 KB
+filename = "10KB_file.txt"
+file_size = 10 * 1024  # 10 KB
 
 # Generate random data
 data = bytearray([random.randint(0, 255) for i in range(file_size)])
