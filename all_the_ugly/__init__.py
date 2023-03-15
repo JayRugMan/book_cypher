@@ -38,7 +38,7 @@ def get_args(argv=None):
     the_epilog='''\
 
 notes:
-  Only the following special characters will work:
+  Only the following special characters will work unless you add your own to the ursospecial.json file:
  . , ' ? + - = : ; ! @ # $ % ^ & * / ( ) [ ] { } _
 
   Some special characters will encode better if a message file is \
