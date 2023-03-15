@@ -6,6 +6,7 @@ import sys
 import argparse
 import secrets
 from os.path import exists
+import json_to_dict as sc
 
 
 def get_args(argv=None):
@@ -230,46 +231,18 @@ def main():
     '''The Main Event'''
 
     options = None
-    special_chars = {
-        '.': "QXp",
-        ',': "QXc",
-        "'": "QXa",
-        '?': "QXq",
-        '-': "QXd",
-        '=': "QXe",
-        ':': "QXC",
-        ';': "QXs",
-        '!': "QX1",
-        '@': "QX2",
-        '#': "QX3",
-        '$': "QX4",
-        '%': "QX5",
-        '^': "QX6",
-        '&': "QX7",
-        '*': "QX8",
-        '(': "QX9",
-        ')': "QX0",
-        '[': "QXl",
-        ']': "QXL",
-        '{': "QXj",
-        '}': "QXJ",
-        '_': "QXu",
-        '/': "QXF",
-        ' ': "QXS",
-        '"': "QXQ"
-    }
 
     args = get_args(options)
 
     if args['the_message']:
         final_answer = encode_message(args['the_message'],
-                                      special_chars,
+                                      sc.special_chars,
                                       args['book_file']
                                      )
     elif args['the_code']:
         final_message = de_the_code(args['the_code'],
                                     args['book_file'],
-                                    special_chars
+                                    sc.special_chars
                                    )
         final_answer = '{}'.format(final_message)
     else:
