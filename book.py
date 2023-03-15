@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 '''This script does stuff'''
 
-##JH import base64
 import sys
-##JH import argparse
-##JH import secrets
-##JH from os.path import exists
 from all_the_ugly import get_args
 from all_the_ugly import encode_message
 from all_the_ugly import de_the_code
