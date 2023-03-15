@@ -80,4 +80,4 @@ Message:
 ,
 ```
 
-So, as demonstrated above, this string is turned into 'QXc,' then back to ','
+So, as demonstrated above, this string is turned into 'QXc,' then back to ','. The mappings of these special characters are in the ```ursospecial.json``` file and can be added to or changed there if needed. 

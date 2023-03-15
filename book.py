@@ -6,7 +6,7 @@ import sys
 import argparse
 import secrets
 from os.path import exists
-import json_to_dict as sc
+import json_to_dict as sc  # Special characters listed in json, imported here
 
 
 def get_args(argv=None):
