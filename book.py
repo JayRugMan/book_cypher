@@ -271,7 +271,7 @@ def main():
                                     args['book_file'],
                                     special_chars
                                    )
-        final_answer = '\nMessage:\n\n{}\n'.format(final_message)
+        final_answer = '{}'.format(final_message)
     else:
         final_answer = 'Oopsy... how did this happen?'
 
