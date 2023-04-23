@@ -45,7 +45,6 @@ options = None
 the_args = get_generator_args(options)
 
 # set seed for reproducibility
-# the_args = sys.argv
 the_seed = the_args['the_seed']
 try:
     int(the_seed)
@@ -55,6 +54,7 @@ except TypeError:
 except ValueError:
     print("Oops, that's not quite a number")
     sys.exit(1)
+
 random.seed(the_seed)
 
 filename = "10KB_file.txt"
