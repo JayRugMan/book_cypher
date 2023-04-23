@@ -39,15 +39,22 @@ reflect the new size of 10KB
 import os
 import random
 import sys
+from all_the_ugly import get_generator_args
+
+options = None
+the_args = get_generator_args(options)
 
 # set seed for reproducibility
-the_args = sys.argv
-the_seed = the_args[1]
+# the_args = sys.argv
+the_seed = the_args['the_seed']
 try:
     int(the_seed)
 except TypeError:
     print("Nope, that's not a number")
-    exit
+    sys.exit(1)
+except ValueError:
+    print("Oops, that's not quite a number")
+    sys.exit(1)
 random.seed(the_seed)
 
 filename = "10KB_file.txt"
