@@ -46,14 +46,14 @@ the_args = get_generator_args(options)
 
 # set seed for reproducibility
 the_seed = the_args['the_seed']
-try:
-    int(the_seed)
-except TypeError:
-    print("Nope, that's not a number")
-    sys.exit(1)
-except ValueError:
-    print("Oops, that's not quite a number")
-    sys.exit(1)
+##JH try:
+##JH     int(the_seed)
+##JH except TypeError:
+##JH     print("Nope, that's not a number")
+##JH     sys.exit(1)
+##JH except ValueError:
+##JH     print("Oops, that's not quite a number")
+##JH     sys.exit(1)
 
 random.seed(the_seed)
 

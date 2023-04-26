@@ -13,16 +13,16 @@ def get_generator_args(argv=None):
 
     the_description='Generate a 10K file of random bits.'
     help_help = '''\
-                 Simply supply an integer following the command, which will
-                 act as a seed for generation. This seed can then be used to
-                 generate the same file of random bits using the same script
-                 on any other computer.
+                 Simply supply an quoted string following the command,
+                 which will act as a seed for generation. This seed can
+                 then be used to generate the same file of random bits
+                 using the same script on any other computer.
 
 '''
     seed_help = '''\
-                The seed is any positive integer. This uses python's random
-                seed, for which there is some uncertainty of the maximum value
-                that can be entered. Note that extremely long values may or may
+                The seed is any string. This uses python's random seed, for
+                which there is some uncertainty of the maximum value that
+                can be entered. Note that extremely long values may or may
                 not be useful, but are not necessary. 
 '''
 
