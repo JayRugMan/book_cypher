@@ -130,4 +130,4 @@ The script has since evolved to take an argument for the **seed** and generates 
    - As soon as the 10kb book file is recycled (which could be every 30 or 60 seconds), the associated code will be un-decypherable, making only the decyphered message on the two devices readable. Nothing caught in transit will be of any use to a third party/man-in-the-middle.
 
 
-[^*]: to see the number of random files possible with a random 10KB file, just do the math - number of possible states of a bit (2) rased to the power of 10KB, which is 8 x 10240 bytes. So, 2 to the power of 81920, or 2^81920. This number is too large for a normal calculator, or even google, but not for python. Run the following command in python to see how many random 10kb files are possible: `2**81920`
+[^*]: To see the number of possible random 10KB files, just do the math - number of possible states of a bit (2) rased to the power of 10KB, which is 8 x 10240 bytes. So, 2 to the power of 81920, or 2^81920. This number is too large for a normal calculator, or even google, but not for python. Run the following command in python to see how many random 10kb files are possible: `2**81920`
