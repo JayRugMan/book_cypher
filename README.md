@@ -1,5 +1,5 @@
 # book_cypher
-A place where files are books and strings aspire to be digits
+A place where all files are books and strings aspire to be digits
 
 
 ## What Is This, Even
