@@ -4,6 +4,7 @@
 import base64
 import sys
 import argparse
+from collections import defaultdict
 import secrets
 from os.path import exists
 
@@ -76,11 +77,17 @@ def get_args(argv=None):
                  code in plain text. This cannot be used with -m/--message.
 
 '''
+    legacy_help='''\
+                 Use legacy mode for decoding messages encoded with
+                 the legacy version of this script. This option only 
+                 really does anything when decoding.
+'''
     the_epilog='''\
 
 notes:
-  Only the following special characters will work unless you add your own to the ursospecial.json file:
- . , ' ? + - = : ; ! @ # $ % ^ & * / ( ) [ ] { } _
+  all ascii characters are supported
+  special characters are replaced with strings defined in ursospecial.json or 
+  ursospecial_legacy.json
 
   Some special characters will encode better if a message file is \
 used instead of a string on the terminal
@@ -122,6 +129,11 @@ used instead of a string on the terminal
                         type=str,
                         help=code_help
                        )
+    parser.add_argument('-l', '--legacy',
+                        action='store_true',
+                        dest='is_legacy',
+                        help=legacy_help
+                    )
 
     return vars(parser.parse_args(argv))
 
@@ -184,30 +196,47 @@ def enrich_message(message_object, specials):
     return enriched_message
 
 
+def build_book_index(book):
+    """
+    Returns (book_list, char_index)
+    book_list: list of base64 lines (same as your process_book result)
+    char_index: dict mapping base64-char -> list of (line_number, char_index_in_line)
+    """
+    book_list = process_book(book)
+    char_index = defaultdict(list)
+
+    # note: process_book inserted a dummy at index 0 so real lines start at 1
+    for line_num, line in enumerate(book_list):
+        # skip index 0 if you keep your insert behavior
+        if line_num == 0:
+            continue
+        # iterate each character position and record it
+        for char_pos, ch in enumerate(line):
+            char_index[ch].append((line_num, char_pos))
+
+    return char_index
+
+
 def encode_message(message, special_cs, book_f):
-    '''takes the book and the message and works some maigic'''
-
+    """
+    - builds an index for each base64 char mapping to all (line, pos)
+    - uniformly chooses one of those positions with secrets.choice
+    - returns the code string
+    """
     message_str = enrich_message(message, special_cs)
-    book_list = process_book(book_f)
-    numb_of_lines = len(book_list)
-    code = ''
+    char_index = build_book_index(book_f)
 
-    for character in message_str:
-        timeout = numb_of_lines
-        while True:
-            rand_line_num = secrets.randbelow(numb_of_lines)
-            if character in book_list[rand_line_num] and rand_line_num != 0:
-                line = ' {}'.format(book_list[rand_line_num])  # offset index
-                idx = line.index(character)
-                code += '{} {} '.format(rand_line_num, idx)
-                break
-            if timeout == 0:  ## breaks infinite loop cause by bad character
-                error_out = 'Looks like {} is an invalid character'
-                print(error_out.format(character))
-                sys.exit(1)
-            timeout -= 1
+    # sanity: ensure every character in message exists in book at least once
+    for ch in set(message_str):
+        if ch not in char_index or len(char_index[ch]) == 0:
+            raise ValueError(f"Character {repr(ch)} not present in book")
 
-    return code[:-1]  # because the last char is a space
+    code_parts = []
+    for ch in message_str:
+        line_num, pos = secrets.choice(char_index[ch])
+        code_parts.append(f"{line_num} {pos}")
+
+    return " ".join(code_parts)
 
 
 def interpret_specials(message, specials):
@@ -221,7 +250,7 @@ def interpret_specials(message, specials):
     return message
 
 
-def de_the_code(code_object, book_f, special_cs):
+def de_the_code(code_object, book_f, special_cs, is_legacy=False):
     '''Takes numbers and book, then returns what it all means'''
 
     # Returns true or false depending on whether the string provided is a
@@ -244,6 +273,11 @@ def de_the_code(code_object, book_f, special_cs):
     line_num = None
     char_num = None
 
+    if is_legacy:
+        linestr = ' {}'
+    else:
+        linestr = '{}'
+
     # This loop stores number pairs from a string-turned-to-list to then
     # store corresponding line and character from the book
     for item in code_object.split(' '):
@@ -253,7 +287,7 @@ def de_the_code(code_object, book_f, special_cs):
             char_num = item
         if line_num and char_num:
             try:
-                line = ' {}'.format(book_list[ int(line_num) ])  # offset index
+                line = linestr.format(book_list[ int(line_num) ])
                 raw_message += line[ int(char_num) ]
             except IndexError:
                 print('ERROR: Wacky Numbers!?!')

@@ -16,14 +16,17 @@ def main():
     args = get_args(options)
 
     if args['the_message']:
+        special_characters = sc.load_special_chars()
         final_answer = encode_message(args['the_message'],
-                                      sc.special_chars,
+                                      special_characters,
                                       args['book_file']
                                      )
     elif args['the_code']:
+        special_characters = sc.load_special_chars(is_legacy=args['is_legacy'])
         final_message = de_the_code(args['the_code'],
                                     args['book_file'],
-                                    sc.special_chars
+                                    special_characters,
+                                    is_legacy=args['is_legacy']
                                    )
         final_answer = '{}'.format(final_message)
     else:
